@@ -1,18 +1,71 @@
 ---
-title: "R Notebook"
+title: OceanHackWeek - Tarea 1
+author: Marina Figueiredo
 output: html_notebook
 ---
 
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+# Exploración inicial de un conjunto de datos
 
-Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+## Objetivo
+
+#El objetivo de esta actividad es cargar un conjunto de datos, visualizar las primeras observaciones y presentar una breve descripción de las variables.
+
+
+dados <- read_excel("Datos mugil.xlsx")
+
+# Mostrar las primeras cinco observaciones
 
 ```{r}
-plot(cars)
+head(datos_mugil, 5)
 ```
 
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+# Dimensiones de la base de datos
 
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
 
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+```{r}
+dim(datos_mugil)
+```
+
+# Nombres de las variables
+
+names(dados)
+```{r}
+names(datos_mugil)
+```
+
+# Estructura de los datos
+
+```{r}
+str(datos_mugil)
+```
+
+# Estadística descriptiva
+
+```{r}
+summary(datos_mugil)
+```
+
+
+```{r}
+# Instalar el paquete readxl si es necesario
+if (!requireNamespace("readxl", quietly = TRUE)) {
+  install.packages("readxl")
+}
+
+# Cargar la biblioteca
+library(readxl)
+
+# Importar los datos de Mugil
+datos_mugil <- read_excel("Datos mugil.xlsx")
+
+# Mostrar las primeras cinco filas
+head(datos_mugil, 5)
+```
+# Descripción del conjunto de datos
+
+# El conjunto de datos utilizado en esta actividad contiene información biométrica y reproductiva de peces de la especie Mugil curma, organizada en una hoja de cálculo de Excel.
+
+# La base presenta 721 registros y 13 variables, incluyendo medidas corporales, pesos, índices biológicos, sexo, estadio de maduración y fechas de colecta y procesamiento.
+
+# Estos datos permiten desarrollar estudios exploratorios sobre las características biológicas y reproductivas de los organismos muestreados.
+
