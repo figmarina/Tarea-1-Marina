@@ -49,3 +49,84 @@ calcular_rango <- function(x) {  range(x, na.rm = TRUE)}
 calcular_rango(datos_mugil$CT)
 ```
 
+## Estadística descriptiva
+
+```{r}
+
+library(readxl)
+
+datos_mugil <- read_excel("Datos mugil.xlsx")
+
+# Dimensiones de la base
+dim(datos_mugil)
+
+# Estructura de las variables
+str(datos_mugil)
+
+# Resumen general
+summary(datos_mugil)
+
+# Número de valores ausentes por variable
+colSums(is.na(datos_mugil))
+
+```
+## Estadísticos descriptivos
+```{r}
+
+# Longitud total (CT)
+
+mean(datos_mugil$CT, na.rm = TRUE)
+
+median(datos_mugil$CT, na.rm = TRUE)
+
+sd(datos_mugil$CT, na.rm = TRUE)
+
+min(datos_mugil$CT, na.rm = TRUE)
+
+max(datos_mugil$CT, na.rm = TRUE)
+
+# Coeficiente de variación (%)
+sd(datos_mugil$CT, na.rm = TRUE) /
+  mean(datos_mugil$CT, na.rm = TRUE) * 100
+
+```
+
+## Función estadística
+```{r}
+
+# Función de estadística descriptiva
+
+estadistica_basica <- function(x) {  x <- x[!is.na(x)]
+  c(
+    N = length(x),
+    Media = mean(x),
+    Mediana = median(x),
+    SD = sd(x),
+    Minimo = min(x),
+    Maximo = max(x),
+    CV = sd(x) / mean(x) * 100  )}
+
+# Aplicar a la longitud total
+estadistica_basica(datos_mugil$CT)
+
+# Aplicar al peso total
+estadistica_basica(datos_mugil$PT)
+
+```
+
+## Distribución de tallas
+```{r}
+
+hist(
+  datos_mugil$CT,
+  breaks = 20,
+  col = "lightblue",
+  border = "white",
+  main = "Distribución de longitud total",
+  xlab = "Longitud total (cm)",
+  ylab = "Frecuencia")
+
+```
+
+
+
