@@ -1,0 +1,51 @@
+
+---
+title: "OceanHackWeek - Tarea 2"
+author: "Marina Figueiredo"
+output: html_notebook
+---
+
+# Visualización de datos y funciones en R
+
+## Objetivo
+
+Crear gráficos exploratorios y definir funciones sencillas utilizando datos biométricos de Mugil curema.
+
+```{r}
+
+library(readxl)
+
+datos_mugil <- read_excel("Datos mugil.xlsx")
+
+head(datos_mugil, 5)
+
+```
+## Gráfico 1. Distribución de la longitud total
+
+El histograma representa la distribución de frecuencias de la longitud total de los individuos.
+
+```{r}
+
+hist(datos_mugil$CT,
+     main = "Distribución de la longitud total",
+     xlab = "Longitud total (cm)",
+     ylab = "Frecuencia",
+     col = "lightblue",
+     border = "white")
+
+```
+
+```{r}
+# Función para calcular la media
+calcular_media <- function(x) {  mean(x, na.rm = TRUE)}
+
+# Aplicar la función a la longitud total
+calcular_media(datos_mugil$CT)
+```
+
+```{r}
+calcular_rango <- function(x) {  range(x, na.rm = TRUE)}
+
+calcular_rango(datos_mugil$CT)
+```
+
