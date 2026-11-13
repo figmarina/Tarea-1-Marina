@@ -127,6 +127,66 @@ hist(
   ylab = "Frecuencia")
 
 ```
+## Detección de outliers
+```{r}
 
+# Verificar si la base está disponible
+head(datos_mugil$CT)
+
+# Comprobar la estructura
+str(datos_mugil$CT)
+
+```
+
+```{r}
+
+# Boxplot de longitud total
+
+boxplot(datos_mugil$CT,
+        main = "Outliers de longitud total",
+        ylab = "Longitud total (cm)",
+        col = "lightblue",
+        pch = 19)
+
+```
+```{r}
+
+# Identificar outliers
+
+outliers_CT <- boxplot.stats(
+  datos_mugil$CT)$out
+
+# Mostrar los valores atípicos
+outliers_CT
+
+# Contar cuántos valores atípicos existen
+length(outliers_CT)
+
+```
+
+## Función para detectar outliers
+```{r}
+
+# Función para detectar outliers mediante IQR
+
+detectar_outliers <- function(x) {
+
+  Q1 <- quantile(x, 0.25, na.rm = TRUE)
+  Q3 <- quantile(x, 0.75, na.rm = TRUE)
+
+  rango <- IQR(x, na.rm = TRUE)
+
+  LI <- Q1 - 1.5 * rango
+  LS <- Q3 + 1.5 * rango
+
+  which(x < LI | x > LS)}
+
+# Aplicar a la longitud total
+detectar_outliers(datos_mugil$CT)
+
+# Aplicar al peso total
+detectar_outliers(datos_mugil$PT)
+
+```
 
 
